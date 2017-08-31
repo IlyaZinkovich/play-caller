@@ -8,6 +8,7 @@ import reactivemongo.play.json._
 import scala.concurrent.ExecutionContext.Implicits.global
 
 object ProfileActor {
+
   def props = Props[ProfileActor]
 
   case class FindProfile(countryCode: String, phoneNumber: String)

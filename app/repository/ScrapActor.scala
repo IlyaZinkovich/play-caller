@@ -1,4 +1,4 @@
-package services
+package repository
 
 import akka.actor.{Actor, Props}
 import akka.pattern.pipe
@@ -8,15 +8,17 @@ import play.api.libs.ws.WSClient
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-object ScraperActor {
-  def props(wsClient: WSClient):Props = Props(new ScraperActor(wsClient))
+object ScrapActor {
+
+  def props(wsClient: WSClient): Props = Props(new ScrapActor(wsClient))
 
   case class Scrap(countryCode: String, phoneNumber: String)
+
 }
 
-class ScraperActor (ws: WSClient) extends Actor {
+class ScrapActor(ws: WSClient) extends Actor {
 
-  import ScraperActor._
+  import ScrapActor._
 
   def receive = {
     case Scrap(countryCode: String, phoneNumber: String) =>
