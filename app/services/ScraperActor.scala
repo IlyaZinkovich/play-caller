@@ -1,11 +1,12 @@
 package services
 
 import akka.actor.{Actor, Props}
+import akka.pattern.pipe
 import play.api.libs.json._
 import play.api.libs.ws.WSClient
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.{Await, Future}
+import scala.concurrent.Future
 
 object ScraperActor {
   def props(wsClient: WSClient):Props = Props(new ScraperActor(wsClient))
@@ -13,17 +14,13 @@ object ScraperActor {
   case class Scrap(countryCode: String, phoneNumber: String)
 }
 
-import scala.concurrent.duration._
-
 class ScraperActor (ws: WSClient) extends Actor {
 
   import ScraperActor._
 
-  private val timeout = 5.seconds
-
   def receive = {
     case Scrap(countryCode: String, phoneNumber: String) =>
-      sender() ! Await.result(scrap(countryCode, phoneNumber), timeout)
+      scrap(countryCode, phoneNumber) pipeTo sender
   }
 
   def scrap(countryCode: String, phoneNumber: String): Future[JsValue] = {
