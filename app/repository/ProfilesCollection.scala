@@ -8,8 +8,8 @@ import scala.concurrent.Future
 
 trait ProfilesCollection {
 
-  val driver = new MongoDriver
-  val connection: MongoConnection = driver.connection(List("localhost"))
-  val database: Future[DefaultDB] = connection.database("experimental")
+  private val driver = new MongoDriver
+  private val connection: MongoConnection = driver.connection(List("localhost"))
+  private val database: Future[DefaultDB] = connection.database("experimental")
   val collection: Future[JSONCollection] = database.map(_.collection[JSONCollection]("profiles"))
 }
