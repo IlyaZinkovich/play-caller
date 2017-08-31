@@ -13,5 +13,4 @@ libraryDependencies += ws
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.0.0" % Test
 libraryDependencies += "com.h2database" % "h2" % "1.4.194"
 libraryDependencies += "org.reactivemongo" %% "play2-reactivemongo" % "0.12.6-play26"
-//libraryDependencies += "org.reactivemongo" %% "reactivemongo-play-json" % "0.12.6"
-
+libraryDependencies += "com.googlecode.libphonenumber" % "libphonenumber" % "8.8.0"

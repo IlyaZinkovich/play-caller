@@ -5,11 +5,12 @@ import javax.inject.{Inject, Singleton}
 import akka.actor.ActorSystem
 import akka.pattern.ask
 import akka.util.Timeout
+import domain.Profile
 import play.api.libs.json.{JsObject, JsValue}
 import play.api.libs.ws.WSClient
-import repository.{ProfileActor, ScrapActor}
-import repository.ProfileActor.{FindProfile, PersistProfile}
-import repository.ScrapActor.Scrap
+import source.{ProfileActor, ScrapActor}
+import source.ProfileActor.{FindProfile, PersistProfile}
+import source.ScrapActor.Scrap
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -23,17 +24,17 @@ class ProfileService @Inject()(system: ActorSystem,
   private val scrapActor = system.actorOf(ScrapActor.props(wsClient), "scrap-actor")
   private implicit val timeout: Timeout = 5.seconds
 
-  def findByPhone(countryCode: String, phoneNumber: String): Future[Option[JsObject]] = {
-    (profileActor ? FindProfile(countryCode, phoneNumber)).mapTo[Option[JsObject]].flatMap {
+  def findByPhone(countryCode: String, phoneNumber: String): Future[Option[Profile]] = {
+    (profileActor ? FindProfile(countryCode, phoneNumber)).mapTo[Option[Profile]].flatMap {
       case Some(result) => Future(Option(result))
       case None => scrapAndGet(countryCode, phoneNumber)
     }
   }
 
-  private def scrapAndGet(countryCode: String, phoneNumber: String): Future[Option[JsObject]] = {
+  private def scrapAndGet(countryCode: String, phoneNumber: String): Future[Option[Profile]] = {
     for {
       foundProfile <- (scrapActor ? Scrap(countryCode, phoneNumber)).mapTo[JsValue]
-      persistedProfile <- (profileActor ? PersistProfile(foundProfile)).mapTo[Option[JsObject]]
+      persistedProfile <- (profileActor ? PersistProfile(foundProfile)).mapTo[Option[Profile]]
     } yield persistedProfile
   }
 }

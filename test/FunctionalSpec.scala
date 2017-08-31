@@ -34,7 +34,6 @@ class FunctionalSpec extends PlaySpec with GuiceOneAppPerSuite {
       status(response) mustBe OK
       contentType(response) mustBe Some("application/json")
       (contentAsJson(response) \ "name").as[String] mustBe "Riya Riya Riya Riya"
-      (contentAsJson(response) \ "altName").as[String] mustBe "Riya Riya Riya Riya Riya Kapoor"
     }
 
   }
