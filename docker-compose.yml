@@ -1,5 +1,11 @@
 version: '2'
 services:
+  play-caller:
+    image: play-caller:1.0-SNAPSHOT
+    container_name: play-caller
+    ports:
+      - 9000:9000
+
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.5.1
     container_name: elasticsearch
