@@ -3,7 +3,7 @@ package actors
 import akka.actor.{Actor, Props}
 import akka.pattern.pipe
 import play.api.libs.json._
-import play.api.libs.ws.WSClient
+import play.api.libs.ws.{WSClient, WSResponse}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -29,11 +29,13 @@ class ScrapActor(ws: WSClient) extends Actor {
     ws.url(s"https://www.truecaller.com/api/search?type=4&countryCode=$countryCode&q=$phoneNumber")
       .withHttpHeaders(("Authorization", "Bearer Yo8r8i2waUqYoAdFKrJAjhuQq3j5j6e7"))
       .get
-      .map { response =>
-        (Json.parse(response.body) \ "actors").toOption match {
-          case Some(result) => Option(result.as[JsArray].value(0))
-          case None => None
-        }
-      }
+      .map(extractResponseData)
+  }
+
+  private def extractResponseData(response: WSResponse) = {
+    (Json.parse(response.body) \ "data").toOption match {
+      case Some(result) => Option(result.as[JsArray].value(0))
+      case None => None
+    }
   }
 }
