@@ -10,7 +10,8 @@ scalaVersion := "2.12.2"
 
 libraryDependencies += guice
 libraryDependencies += ws
+libraryDependencies += play.sbt.PlayImport.cacheApi
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.0.0" % Test
 libraryDependencies += "com.h2database" % "h2" % "1.4.194"
-libraryDependencies += "org.reactivemongo" %% "play2-reactivemongo" % "0.12.6-play26"
 libraryDependencies += "com.googlecode.libphonenumber" % "libphonenumber" % "8.8.0"
+libraryDependencies += "com.github.karelcemus" %% "play-redis" % "1.5.1"

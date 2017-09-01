@@ -1,11 +1,11 @@
 version: '2'
 services:
-  mongodb:
-    image: mongo
+  redis:
+    image: redis
     ports:
-      - "27017:27017"
+      - "6379:6379"
     volumes:
-       - mongo-volume:/data/db
+       - redis-volume:/data
 
 volumes:
-  mongo-volume:
+  redis-volume:
