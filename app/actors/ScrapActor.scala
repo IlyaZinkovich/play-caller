@@ -1,4 +1,4 @@
-package data
+package actors
 
 import akka.actor.{Actor, Props}
 import akka.pattern.pipe
@@ -30,7 +30,7 @@ class ScrapActor(ws: WSClient) extends Actor {
       .withHttpHeaders(("Authorization", "Bearer Yo8r8i2waUqYoAdFKrJAjhuQq3j5j6e7"))
       .get
       .map { response =>
-        (Json.parse(response.body) \ "data").toOption match {
+        (Json.parse(response.body) \ "actors").toOption match {
           case Some(result) => Option(result.as[JsArray].value(0))
           case None => None
         }
