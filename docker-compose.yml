@@ -18,14 +18,5 @@ services:
     ports:
       - 9200:9200
 
-  redis:
-    image: redis
-    container_name: redis
-    ports:
-      - "6379:6379"
-    volumes:
-       - redis-volume:/data
-
 volumes:
   es-volume:
-  redis-volume:
