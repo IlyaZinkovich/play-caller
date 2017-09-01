@@ -1,4 +1,4 @@
-package source
+package data
 
 import akka.actor.{Actor, Props}
 import akka.pattern.pipe

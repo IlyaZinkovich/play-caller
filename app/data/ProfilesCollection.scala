@@ -1,4 +1,4 @@
-package source
+package data
 
 import reactivemongo.api.{DefaultDB, MongoConnection, MongoDriver}
 import reactivemongo.play.json.collection.JSONCollection

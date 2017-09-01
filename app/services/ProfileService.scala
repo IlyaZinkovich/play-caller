@@ -5,12 +5,12 @@ import javax.inject.{Inject, Singleton}
 import akka.actor.ActorSystem
 import akka.pattern.ask
 import akka.util.Timeout
+import data.ProfileActor.{FindProfile, PersistProfile}
+import data.ScrapActor.Scrap
+import data.{ProfileActor, ScrapActor}
 import domain.Profile
-import play.api.libs.json.{JsObject, JsValue}
+import play.api.libs.json.JsValue
 import play.api.libs.ws.WSClient
-import source.{ProfileActor, ScrapActor}
-import source.ProfileActor.{FindProfile, PersistProfile}
-import source.ScrapActor.Scrap
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

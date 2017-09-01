@@ -1,9 +1,9 @@
-package source
+package data
 
 import akka.actor.{Actor, Props}
 import akka.pattern.pipe
 import com.google.i18n.phonenumbers.PhoneNumberUtil
-import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat
+import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat.E164
 import domain.{Phone, Profile}
 import play.api.libs.json._
 import reactivemongo.play.json._
@@ -39,7 +39,7 @@ class ProfileActor extends Actor with ProfilesCollection {
 
   private def byE164(countryCode: String, phoneNumber: String) = {
     val util = PhoneNumberUtil.getInstance()
-    val e164 = util.format(util.parse(phoneNumber, countryCode), PhoneNumberFormat.E164)
+    val e164 = util.format(util.parse(phoneNumber, countryCode), E164)
     Json.obj("phones.e164Format" -> e164)
   }
 
