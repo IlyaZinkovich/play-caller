@@ -19,4 +19,9 @@ libraryDependencies ++= Seq(
 )
 
 maintainer := "Ilya Zinkovich"
+dockerUsername := Some("ilyazinkovich")
 dockerExposedPorts in Docker := Seq(9000, 9443)
+
+javaOptions in Universal ++= Seq(
+  "-Dpidfile.path=/dev/null"
+)
