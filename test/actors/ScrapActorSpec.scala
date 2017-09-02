@@ -10,9 +10,9 @@ import org.scalamock.scalatest.MockFactory
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 import play.api.libs.json.{JsValue, Json}
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class ScrapActorSpec extends TestKit(ActorSystem("testSystem")) with ImplicitSender
   with WordSpecLike with Matchers with BeforeAndAfterAll with MockFactory {
