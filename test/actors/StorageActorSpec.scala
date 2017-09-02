@@ -2,20 +2,17 @@ package actors
 
 import actors.StorageActor.Store
 import akka.actor.ActorSystem
+import akka.pattern.ask
 import akka.testkit.{ImplicitSender, TestKit}
 import akka.util.Timeout
 import clients.ElasticSearchClient
 import org.scalamock.scalatest.MockFactory
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
-import play.api.libs.json.Json
-import akka.pattern.ask
 import play.api.Configuration
-import play.api.libs.ws.WSClient
+import play.api.libs.json.Json
 import play.api.test.WsTestClient
 
 import scala.concurrent.duration._
-import scala.concurrent.{Await, Future}
-import scala.concurrent.ExecutionContext.Implicits.global
 
 class StorageActorSpec extends TestKit(ActorSystem("testSystem")) with ImplicitSender
   with WordSpecLike with Matchers with BeforeAndAfterAll with MockFactory {
@@ -25,7 +22,6 @@ class StorageActorSpec extends TestKit(ActorSystem("testSystem")) with ImplicitS
   }
 
   private implicit val timeout: Timeout = 5.seconds
-
 
   "A Storage actor" should {
 
