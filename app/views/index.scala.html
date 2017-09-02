@@ -3,36 +3,38 @@
 
 <head>
     <title>PlayCaller</title>
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
     <link rel="stylesheet" href="assets/lib/intl-tel-input/css/intlTelInput.css">
+
 <body>
-<div>
-    <span>Play Caller</span>
-    <input type="tel" id="phone">
-    <button id="search">Search</button>
+
+<div id="search-form">
+    <h1><em>Play Caller</em></h1>
+    <h2>Search over 3 billion phone numbers.</h2>
+    <div>
+        <input class="search-input" type="tel" id="phone">
+        <button class="search-button" id="search">Search</button>
+    </div>
 </div>
-<div>
-    <span>Name: </span>
-    <span id="name"></span>
-</div>
-<div>
-    <span>Phone number: </span>
-    <span id="phoneNumber"></span>
-</div>
-<div>
-    <span>Carrier: </span>
-    <span id="carrier"></span>
-</div>
-<div>
-    <span>Address: </span>
-    <span id="address"></span>
-</div>
-<div>
-    <span>Spam score: </span>
-    <span id="spamScore"></span>
-</div>
-<div>
-    <span>Spam type: </span>
-    <span id="spamType"></span>
+<div class="center">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Phone number</th>
+            <th>Carrier</th>
+            <th>Address</th>
+            <th>Spam score</th>
+            <th>Spam type</th>
+        </tr>
+        <tr>
+            <td id="name"></td>
+            <td id="phoneNumber"></td>
+            <td id="carrier"></td>
+            <td id="address"></td>
+            <td id="spamScore"></td>
+            <td id="spamType"></td>
+        </tr>
+    </table>
 </div>
 
 <script src="assets/lib/jquery/jquery.min.js"></script>

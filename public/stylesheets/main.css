@@ -1,3 +1,59 @@
 .iti-flag {
   background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/10.0.2/img/flags.png");
 }
+.center {
+    margin: 0 auto;
+    width:40%;
+}
+#search-form {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 15%;
+}
+h1, h2 {
+  font-family: Montserrat,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+  font-weight: 700;
+}
+h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  line-height: 3rem;
+}
+h2 {
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+body {
+  background: #0086fe;
+}
+
+button {
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 4px 20px 4px 20px;
+}
+
+
+table {
+    margin-top: 5%;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #fff;
+    color: black;
+}
