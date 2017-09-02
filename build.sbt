@@ -12,6 +12,8 @@ libraryDependencies ++= Seq(
   guice,
   ws,
   ehcache,
+  "org.scalamock" %% "scalamock-scalatest-support" % "3.6.0" % Test,
+  "com.typesafe.akka" % "akka-testkit_2.12" % "2.5.4" % Test,
   "org.scalatestplus.play" %% "scalatestplus-play" % "3.0.0" % Test,
   "com.googlecode.libphonenumber" % "libphonenumber" % "8.8.0"
 )
