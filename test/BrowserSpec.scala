@@ -16,7 +16,7 @@ class BrowserSpec extends PlaySpec
 
       go to ("http://localhost:" + port)
 
-//      pageSource must include ("True Caller")
+      pageSource must include ("Play Caller")
     }
   }
 }

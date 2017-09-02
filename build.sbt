@@ -13,9 +13,7 @@ libraryDependencies ++= Seq(
   ws,
   ehcache,
   "org.scalatestplus.play" %% "scalatestplus-play" % "3.0.0" % Test,
-  "com.h2database" % "h2" % "1.4.194",
-  "com.googlecode.libphonenumber" % "libphonenumber" % "8.8.0",
-  "com.github.karelcemus" %% "play-redis" % "1.5.1"
+  "com.googlecode.libphonenumber" % "libphonenumber" % "8.8.0"
 )
 
 maintainer := "Ilya Zinkovich"

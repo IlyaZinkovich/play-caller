@@ -2,7 +2,7 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /                           controllers.Assets.at(path="/public/html", file="index.html")
+GET     /                           controllers.IndexController.index
 
 GET     /search                     controllers.ProfileController.search(searchType: Int ?= 4, countryCode: String, phoneNumber: String)
 
