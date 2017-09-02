@@ -23,5 +23,6 @@ dockerUsername := Some("ilyazinkovich")
 dockerExposedPorts in Docker := Seq(9000, 9443)
 
 javaOptions in Universal ++= Seq(
+  "-Delasticsearch.baseUrl=http://elasticsearch:9200",
   "-Dpidfile.path=/dev/null"
 )
