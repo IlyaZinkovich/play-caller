@@ -5,8 +5,8 @@ import javax.inject.{Inject, Singleton}
 import play.api.libs.json.{JsArray, JsValue, Json}
 import play.api.libs.ws.{WSClient, WSResponse}
 
-import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 @Singleton
 class TrueCallerClient @Inject() (wsClient: WSClient) {
@@ -22,7 +22,7 @@ class TrueCallerClient @Inject() (wsClient: WSClient) {
 
   private def extractResponseData(response: WSResponse) = {
     (Json.parse(response.body) \ "data").toOption match {
-      case Some(result) => Option(result.as[JsArray].value(0))
+      case Some(result) => result.as[JsArray].value.lift(0)
       case None => None
     }
   }

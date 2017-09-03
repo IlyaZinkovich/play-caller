@@ -15,5 +15,10 @@ class FunctionalSpec extends PlaySpec with GuiceOneAppPerSuite {
       (contentAsJson(response) \ "name").as[String] mustBe "Riya Riya Riya Riya"
     }
 
+    "return not found for invalid phone number" in {
+      val response = route(app, FakeRequest(GET, "/search?countryCode=IN&phoneNumber=someWrongNumber")).get
+
+      status(response) mustBe NOT_FOUND
+    }
   }
 }
