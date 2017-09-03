@@ -11,7 +11,7 @@ import scala.concurrent.Future
 @Singleton
 class TrueCallerClient @Inject() (wsClient: WSClient) {
 
-  val authorizationToken = "Yo8r8i2waUqYoAdFKrJAjhuQq3j5j6e7"
+  val authorizationToken = "NHrai9x2N5VH09g_qf6p-KrdR3jprwgV"
 
   def search(searchType: Int, countryCode: String, phoneNumber: String): Future[Option[JsValue]] = {
     wsClient.url(s"https://www.truecaller.com/api/search?type=$searchType&countryCode=$countryCode&q=$phoneNumber")
