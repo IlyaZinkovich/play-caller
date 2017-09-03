@@ -10,7 +10,7 @@ import akka.pattern.ask
 import akka.util.Timeout
 import clients.{ElasticSearchClient, TrueCallerClient}
 import play.api.cache.Cached
-import play.api.libs.json.{JsValue, Json}
+import play.api.libs.json.{JsArray, JsValue, Json}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -32,7 +32,7 @@ class ProfileController @Inject()(cc: ControllerComponents,
     Action.async {
       scrap(searchType, countryCode, phoneNumber).map(store).map {
         case Some(scrappedData) => Ok(Json.toJson(scrappedData))
-        case None => NotFound
+        case None => Ok(Json.obj("data" -> JsArray.empty))
       }
     }
   }
