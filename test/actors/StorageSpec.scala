@@ -1,6 +1,6 @@
 package actors
 
-import actors.StorageActor.Store
+import actors.Storage.Store
 import akka.actor.ActorSystem
 import akka.pattern.ask
 import akka.testkit.{ImplicitSender, TestKit}
@@ -15,7 +15,7 @@ import play.api.test.WsTestClient
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class StorageActorSpec extends TestKit(ActorSystem("testSystem")) with ImplicitSender
+class StorageSpec extends TestKit(ActorSystem("testSystem")) with ImplicitSender
   with WordSpecLike with Matchers with BeforeAndAfterAll with MockFactory {
 
   override def afterAll {
@@ -32,7 +32,7 @@ class StorageActorSpec extends TestKit(ActorSystem("testSystem")) with ImplicitS
         val elasticSearchClient = new ElasticSearchClient(client, configuration)
         val json = Json.parse("{\"id\":\"id\",\"name\":\"Riya\"}")
 
-        val storageActor = system.actorOf(StorageActor.props(elasticSearchClient))
+        val storageActor = system.actorOf(Storage.props(elasticSearchClient))
         storageActor ? Store(json)
       }
     }

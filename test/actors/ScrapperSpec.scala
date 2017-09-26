@@ -1,6 +1,6 @@
 package actors
 
-import actors.ScrapActor.Scrap
+import actors.Scrapper.Scrap
 import akka.actor.ActorSystem
 import akka.pattern.ask
 import akka.testkit.{ImplicitSender, TestKit}
@@ -14,7 +14,7 @@ import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class ScrapActorSpec extends TestKit(ActorSystem("testSystem")) with ImplicitSender
+class ScrapperSpec extends TestKit(ActorSystem("testSystem")) with ImplicitSender
   with WordSpecLike with Matchers with BeforeAndAfterAll with MockFactory {
 
   override def afterAll {
@@ -35,7 +35,7 @@ class ScrapActorSpec extends TestKit(ActorSystem("testSystem")) with ImplicitSen
 
       (trueCallerClient.search _).when(searchType, countryCode, phoneNumber).returns(Future(Option(json)))
 
-      val scrapActor = system.actorOf(ScrapActor.props(trueCallerClient))
+      val scrapActor = system.actorOf(Scrapper.props(trueCallerClient))
       val future = scrapActor ? Scrap(searchType, countryCode, phoneNumber)
 
       val result = Await.result(future, 5.seconds).asInstanceOf[Option[JsValue]]

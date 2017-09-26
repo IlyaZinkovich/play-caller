@@ -1,6 +1,6 @@
 package actors
 
-import actors.ScrapActor.Scrap
+import actors.Scrapper.Scrap
 import akka.actor.{Actor, Props}
 import akka.pattern.{ask, pipe}
 import akka.util.Timeout
@@ -27,8 +27,8 @@ class IdentityProvider(trueCallerClient: TrueCallerClient,
   private implicit val ec = context.dispatcher
   private implicit val timeout: Timeout = 5.seconds
 
-  private val scrapper = context.actorOf(ScrapActor.props(trueCallerClient), "scrap-actor")
-  private val storage = context.actorOf(StorageActor.props(elasticSearchClient), "storage-actor")
+  private val scrapper = context.actorOf(Scrapper.props(trueCallerClient), "scrap-actor")
+  private val storage = context.actorOf(Storage.props(elasticSearchClient), "storage-actor")
 
   def receive = {
     case IdentifyByPhone(searchType, countryCode, phoneNumber) =>

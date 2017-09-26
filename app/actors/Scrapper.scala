@@ -4,17 +4,17 @@ import akka.actor.{Actor, Props}
 import akka.pattern.pipe
 import clients.TrueCallerClient
 
-object ScrapActor {
+object Scrapper {
 
-  def props(client: TrueCallerClient): Props = Props(new ScrapActor(client))
+  def props(client: TrueCallerClient): Props = Props(new Scrapper(client))
 
   case class Scrap(searchType: Int, countryCode: String, phoneNumber: String)
 
 }
 
-class ScrapActor(client: TrueCallerClient) extends Actor {
+class Scrapper(client: TrueCallerClient) extends Actor {
 
-  import ScrapActor._
+  import Scrapper._
 
   private implicit val ec = context.dispatcher
 

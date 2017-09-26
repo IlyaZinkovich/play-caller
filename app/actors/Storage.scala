@@ -4,20 +4,19 @@ import akka.actor.{Actor, Props}
 import clients.ElasticSearchClient
 import play.api.libs.json.JsValue
 
-object StorageActor {
+object Storage {
 
-  def props(client: ElasticSearchClient): Props = Props(new StorageActor(client))
+  def props(client: ElasticSearchClient): Props = Props(new Storage(client))
 
   case class Store(data: JsValue)
 
 }
 
-class StorageActor(client: ElasticSearchClient) extends Actor {
+class Storage(client: ElasticSearchClient) extends Actor {
 
-  import StorageActor._
+  import Storage._
 
   def receive = {
     case Store(data: JsValue) => client.store(data)
   }
-
 }
