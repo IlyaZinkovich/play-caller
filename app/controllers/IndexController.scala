@@ -11,4 +11,3 @@ class IndexController @Inject()(cc: ControllerComponents) extends AbstractContro
     Ok(views.html.index())
   }
 }
-

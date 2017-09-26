@@ -5,11 +5,11 @@ import javax.inject.{Inject, Singleton}
 import play.api.libs.json.{JsArray, JsValue, Json}
 import play.api.libs.ws.{WSClient, WSResponse}
 
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class TrueCallerClient @Inject() (wsClient: WSClient) {
+class TrueCallerClient @Inject() (wsClient: WSClient)
+                                 (implicit ec: ExecutionContext) {
 
   val authorizationToken = "NHrai9x2N5VH09g_qf6p-KrdR3jprwgV"
 

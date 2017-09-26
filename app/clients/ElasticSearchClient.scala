@@ -2,14 +2,15 @@ package clients
 
 import javax.inject.{Inject, Singleton}
 
-import play.api.{Configuration, Logger}
 import play.api.libs.json.{JsValue, Json}
 import play.api.libs.ws.WSClient
+import play.api.{Configuration, Logger}
 
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.ExecutionContext
 
 @Singleton
-class ElasticSearchClient @Inject() (wsClient: WSClient, configuration: Configuration) {
+class ElasticSearchClient @Inject()(wsClient: WSClient, configuration: Configuration)
+                                   (implicit ec: ExecutionContext) {
 
   private lazy val baseUrl = configuration.get[String]("elasticsearch.baseUrl")
 

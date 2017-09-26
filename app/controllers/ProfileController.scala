@@ -12,7 +12,7 @@ import play.api.cache.Cached
 import play.api.libs.json.{JsArray, JsValue, Json}
 import play.api.mvc._
 
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 
 @Singleton
@@ -20,12 +20,13 @@ class ProfileController @Inject()(cc: ControllerComponents,
                                   system: ActorSystem,
                                   trueCallerClient: TrueCallerClient,
                                   elasticSearchClient: ElasticSearchClient,
-                                  cached: Cached) extends AbstractController(cc) {
+                                  cached: Cached)
+                                 (implicit ec: ExecutionContext) extends AbstractController(cc) {
+
+  private implicit val timeout: Timeout = 5.seconds
 
   private val identityProvider =
     system.actorOf(IdentityProvider.props(trueCallerClient, elasticSearchClient), "identity-actor")
-
-  private implicit val timeout: Timeout = 5.seconds
 
   def search(searchType: Int, countryCode: String, phoneNumber: String) = cached(s"$countryCode/$phoneNumber") {
     Action.async {

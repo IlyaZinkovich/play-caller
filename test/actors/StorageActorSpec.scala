@@ -13,6 +13,7 @@ import play.api.libs.json.Json
 import play.api.test.WsTestClient
 
 import scala.concurrent.duration._
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class StorageActorSpec extends TestKit(ActorSystem("testSystem")) with ImplicitSender
   with WordSpecLike with Matchers with BeforeAndAfterAll with MockFactory {

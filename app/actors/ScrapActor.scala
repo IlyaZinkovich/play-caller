@@ -4,8 +4,6 @@ import akka.actor.{Actor, Props}
 import akka.pattern.pipe
 import clients.TrueCallerClient
 
-import scala.concurrent.ExecutionContext.Implicits.global
-
 object ScrapActor {
 
   def props(client: TrueCallerClient): Props = Props(new ScrapActor(client))
@@ -17,6 +15,8 @@ object ScrapActor {
 class ScrapActor(client: TrueCallerClient) extends Actor {
 
   import ScrapActor._
+
+  private implicit val ec = context.dispatcher
 
   def receive = {
     case Scrap(searchType: Int, countryCode: String, phoneNumber: String) =>
